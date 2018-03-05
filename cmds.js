@@ -209,7 +209,8 @@ exports.playCmd = rl => {
                 }
                 log('Su respuesta es:');                
                 if(answer === quiz.answer){
-                    log(`CORRECTO - Lleva' ${++score} ' aciertos.`);
+                    score++;
+                    log(`CORRECTO - Lleva' ${score} ' aciertos.`);
                     playOne();
     
                 } else {
