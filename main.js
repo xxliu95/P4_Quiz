@@ -1,117 +1,86 @@
 const readline = require('readline');
+const {log, biglog, errorlog, colorize} = require("./out");
+const cmds = require("./cmds");
 
-console.log("CORE quiz");
+// Mensaje inicial
+biglog('CORE Quiz','green');
+
 
 const rl = readline.createInterface({
   input: process.stdin,
+
+  
   output: process.stdout,
-  prompt: 'quiz> '
+  prompt: colorize("quiz > ", 'blue'),
+  completer: (line) => {
+    const completions = 'h help add detele edit list test p play credits q quit '.split(' ');
+    const hits = completions.filter((c) => c.startsWith(line));
+    // show all completions if none found
+    return [hits.length ? hits : completions, line];
+  }
 });
 
 rl.prompt();
 
 rl.on('line', (line) => {
-  switch (line.trim()) {
+
+  let args = line.split(" ");
+  let cmd = args[0].toLowerCase().trim();
+
+  switch (cmd) {
     case '':
-        break;
+    rl.prompt();
+    break;
 
     case 'h':
     case 'help':
-        console.log("Comandos");
-        console.log("   h|help -h|help - Muestra esta ayuda.");
-        console.log("   list - Listar los quizzes existentes.");
-        console.log("   show <id> - Muestra la pregunta y la respuesta el quiz indicado.");
-        console.log("   add - Añadir un nuevo quiz interactivamente.");
-        console.log("   delete <id> - Borrar el quiz indicado.");
-        console.log("   edit <id> - Editar el quiz indicado.");
-        console.log("   test <id> - Probar el quiz indicado.");
-        console.log("   p|play - Jugar a preguntar aleatoriamente todos los quizzes.");
-        console.log("   credits - Créditos.");
-        console.log("   q|quit - Salir del programa.");
-        break;
-    
+    cmds.helpCmd(rl);
+    break;
+
     case 'quit':
     case 'q':
-        rl.close();
-        break;
-        
+    cmds.quitCmd(rl);
+    break;
+
     case 'add':
-        console.log('Añadir un nuevo quiz.');
-        break;
+    cmds.addCmd(rl);
+    break;
 
     case 'list':
-        console.log('Listar todos los quizzes existentes.');
-        break;
+    cmds.listCmd(rl);
+    break;
 
     case 'show':
-        console.log('Mostrar el quiz indicado.');
-        break;
+    cmds.showCmd(rl,args[1]);
+    break;
 
     case 'test':
-        console.log('Probar el quiz indicado.');
-        break;
-    
+    cmds.testCmd(rl,args[1]);
+    break;
+
     case 'play':
     case 'p':
-        console.log('Jugar.');
-        break;
-    
+    cmds.playCmd(rl);
+    break;
+
     case 'delete':
-        console.log('Borrar el quiz indicado.');
-        break;
-    
+    cmds.deleteCmd(rl,args[1]);
+    break;
+
     case 'edit':
-        console.log('Editar el quiz indicado.');
-        break;
+    cmds.editCmd(rl,args[1]);
+    break;
 
     case 'credits':
-        console.log('Autores de la práctica: ');
-        console.log('Xinxin Liu');
-        break;
+    cmds.creditsCmd(rl);
+    break;
 
     default:
-        console.log(`Comando desconocida: '${line.trim()}'`);
-        console.log(`Use 'help' para ver todos los comandos disponibles.`);
-        break;
+    log(`Comando desconocida: '${colorize(cmd,'red')}'`);
+    log(`Use ${colorize('help', 'green')} para ver todos los comandos disponibles.`);
+    break;
   }
-rl.prompt();
 }).on('close', () => {
-  console.log('Adios');
+  log('Adios!');
   process.exit(0);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
