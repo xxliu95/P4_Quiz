@@ -154,7 +154,7 @@ exports.editCmd = (rl,id) => {
                 if(answer.length > 1){
                     answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
                 }
-                if(answer === quiz.answer){
+                if(answer == quiz.answer){
                     log('Su respuesta es Correcta');
                     //log('Correcta');
                     rl.prompt();
@@ -207,9 +207,9 @@ exports.playCmd = rl => {
                 if(answer.length > 1){
                     answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
                 }
-                if(answer === quiz.answer){
+                if(answer == quiz.answer){
                     log('Su respuesta es CORRECTA');                
-                    log(`CORRECTA - Lleva' ${++score} ' aciertos.`);
+                    //log(`CORRECTA - Lleva' ${++score} ' aciertos.`);
                     playOne();
     
                 } else {
