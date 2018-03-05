@@ -157,11 +157,12 @@ exports.editCmd = (rl,id) => {
                 if(answer === quiz.answer){
                     log('Su respuesta es correcta.');
                     //biglog('Correcta','green');
+                    rl.prompt();
                 } else {
                     log('Su respuesta es incorrecta.');
                     //biglog('Incorrecta','red');
+                    rl.prompt();
                 }
-                rl.prompt();
             });
         } catch(error) {
             errorlog(error.message);
