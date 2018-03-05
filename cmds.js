@@ -156,10 +156,10 @@ exports.editCmd = (rl,id) => {
                 }
                 if(answer === quiz.answer){
                     log('Su respuesta es correcta.');
-                    log('Correcta');
+                    //biglog('Correcta','green');
                 } else {
                     log('Su respuesta es incorrecta.');
-                    log('Incorrecta');
+                    //biglog('Incorrecta','red');
                 }
                 rl.prompt();
             });
