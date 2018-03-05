@@ -155,8 +155,8 @@ exports.editCmd = (rl,id) => {
                     answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
                 }
                 if(answer === quiz.answer){
-                    log('Su respuesta es:');
-                    log('Correcta');
+                    log('Su respuesta es Correcta');
+                    //log('Correcta');
                     rl.prompt();
                 } else {
                     log('Su respuesta es:');
@@ -208,13 +208,13 @@ exports.playCmd = rl => {
                     answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
                 }
                 if(answer === quiz.answer){
-                    log('Su respuesta es:');                
-                    log(`CORRECTO - Lleva' ${++score} ' aciertos.`);
+                    log('Su respuesta es CORRECTA');                
+                    log(`CORRECTA - Lleva' ${++score} ' aciertos.`);
                     playOne();
     
                 } else {
                     log('Su respuesta es:');                
-                    log(`INCORRECTO.`);
+                    log(`INCORRECTA.`);
                     log(`Fin del examen. Aciertos: ${score}`);
                     biglog(score, 'magenta');
                     rl.prompt();
