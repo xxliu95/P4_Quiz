@@ -202,7 +202,7 @@ exports.playCmd = rl => {
                     rl.prompt(); 
                 }
                 answer = answer.trim();
-                if(answer.toUpperCase() === quiz.answer.toUpperCase){
+                if(answer.toUpperCase() === quiz.answer.toUpperCase()){
                     log('Su respuesta es CORRECTA');                
                     //log(`CORRECTA - Lleva' ${++score} ' aciertos.`);
                     playOne();
