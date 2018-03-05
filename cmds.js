@@ -154,11 +154,12 @@ exports.editCmd = (rl,id) => {
                 if(answer.length > 1){
                     answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
                 }
-                log('Su respuesta es:');                
                 if(answer === quiz.answer){
-                    biglog('Correcta','green');
+                    log('Su respuesta es correcta.');
+                    log('Correcta');
                 } else {
-                    biglog('Incorrecta','red');
+                    log('Su respuesta es incorrecta.');
+                    log('Incorrecta');
                 }
                 rl.prompt();
             });
@@ -186,8 +187,8 @@ exports.playCmd = rl => {
     const playOne = () =>{
         if(toBeResolved.length === 0){
             log('No hay nada más que preguntar');
-            log(`Fin del examen. Aciertos:`);
-            biglog(score, 'magenta');
+            log(`Fin del examen. Aciertos: ${score}`);
+            log(score);
             rl.prompt();
         } else {
             let num = Math.floor((Math.random() * toBeResolved.length));
@@ -212,8 +213,8 @@ exports.playCmd = rl => {
     
                 } else {
                     log(`INCORRECTO.`);
-                    log(`Fin del examen. Aciertos:`);
-                    biglog(score, 'magenta');
+                    log(`Fin del examen. Aciertos: ${score}`);
+                    log(score);
                     rl.prompt();
                 }
             });
