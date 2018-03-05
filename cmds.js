@@ -155,12 +155,12 @@ exports.editCmd = (rl,id) => {
                     answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
                 }
                 if(answer === quiz.answer){
-                    log('Su respuesta es correcta.');
-                    //biglog('Correcta','green');
+                    log('Su respuesta es:');
+                    log('Correcta');
                     rl.prompt();
                 } else {
-                    log('Su respuesta es incorrecta.');
-                    //biglog('Incorrecta','red');
+                    log('Su respuesta es:');
+                    log('Incorrecta');
                     rl.prompt();
                 }
             });
@@ -207,13 +207,13 @@ exports.playCmd = rl => {
                 if(answer.length > 1){
                     answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
                 }
-                log('Su respuesta es:');                
                 if(answer === quiz.answer){
-                    score++;
-                    log(`CORRECTO - Lleva' ${score} ' aciertos.`);
+                    log('Su respuesta es:');                
+                    log(`CORRECTO - Lleva' ${++score} ' aciertos.`);
                     playOne();
     
                 } else {
+                    log('Su respuesta es:');                
                     log(`INCORRECTO.`);
                     log(`Fin del examen. Aciertos: ${score}`);
                     biglog(score, 'magenta');
