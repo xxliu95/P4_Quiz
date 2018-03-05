@@ -156,10 +156,10 @@ exports.editCmd = (rl,id) => {
                 }
                 if(answer === quiz.answer){
                     log('Su respuesta es correcta.');
-                    biglog('Correcta','green');
+                    log('Correcta');
                 } else {
                     log('Su respuesta es incorrecta.');
-                    biglog('Incorrecta','red');
+                    log('Incorrecta');
                 }
                 rl.prompt();
             });
@@ -208,7 +208,7 @@ exports.playCmd = rl => {
                 }
                 log('Su respuesta es:');                
                 if(answer === quiz.answer){
-                    log(`CORRECTO - Lleva' ${++score} ' aciertos'`);
+                    log(`CORRECTO - Lleva' ${++score} ' aciertos.`);
                     playOne();
     
                 } else {
