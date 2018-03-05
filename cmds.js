@@ -156,10 +156,10 @@ exports.editCmd = (rl,id) => {
                 }
                 if(answer === quiz.answer){
                     log('Su respuesta es correcta.');
-                    log('Correcta');
+                    biglog('Correcta','green');
                 } else {
                     log('Su respuesta es incorrecta.');
-                    log('Incorrecta');
+                    biglog('Incorrecta','red');
                 }
                 rl.prompt();
             });
@@ -188,7 +188,7 @@ exports.playCmd = rl => {
         if(toBeResolved.length === 0){
             log('No hay nada más que preguntar');
             log(`Fin del examen. Aciertos: ${score}`);
-            log(score);
+            biglog(score, 'magenta');
             rl.prompt();
         } else {
             let num = Math.floor((Math.random() * toBeResolved.length));
@@ -214,7 +214,7 @@ exports.playCmd = rl => {
                 } else {
                     log(`INCORRECTO.`);
                     log(`Fin del examen. Aciertos: ${score}`);
-                    log(score);
+                    biglog(score, 'magenta');
                     rl.prompt();
                 }
             });
