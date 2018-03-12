@@ -222,10 +222,11 @@ exports.editCmd = (rl,id) => {
     })
     .catch(error => {
         errorlog(error.message);
+        rl.prompt();
     })
     .then(() => {
         rl.prompt();
-    });
+    })
  };
   
 /**
@@ -249,6 +250,7 @@ exports.playCmd = rl => {
         playOne()
         .catch(error => {
             errorlog(error.message);
+            rl.prompt();
         })
     })
 
