@@ -211,8 +211,7 @@ exports.editCmd = (rl,id) => {
         }
         return makeQuestion(rl, `${quiz.question}: ` )
         .then(a => {
-            a.trim();
-            if(a.toUpperCase() === quiz.answer.toUpperCase()){
+            if(a.trim().toUpperCase() === quiz.answer.toUpperCase()){
                 log('Su respuesta es: ');
                 biglog('Correcta','green');
             } else {
@@ -274,8 +273,7 @@ exports.playCmd = rl => {
                     }
                     return makeQuestion(rl, `${quiz.question}: `)
                     .then(a => {
-                        a.trim();
-                        if(a.toUpperCase() === quiz.answer.toUpperCase()){
+                        if(a.trim().toUpperCase() === quiz.answer.toUpperCase()){
                             log('Su respuesta es: ');
                             biglog('Correcta','green');
                             log(`Lleva ${++score} aciertos.`); 
