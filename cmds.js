@@ -209,14 +209,14 @@ exports.editCmd = (rl,id) => {
         if (!quiz){
             throw new Error(`No existe un quiz asociado al id=${id}.`);
         }
-        return makeQuestion(rl, `${quiz.question}: ` )
+        return makeQuestion(rl, `${quiz.question}?: ` )
         .then(a => {
-            if(a.toLowerCase() === quiz.answer.toLowerCase()){
-                log('Su respuesta es: ');
-                biglog('Correcta','green');
+            if(a.toUpperCase() === quiz.answer.toUpperCase()){
+                log('Su respuesta es correcta: ');
+                log('correcta','green');
             } else {
-                log('Su respuesta es:');
-                biglog('Incorrecta','red');
+                log('Su respuesta es incorrecta:');
+                log('incorrecta','red');
             }
         });
     })
@@ -271,11 +271,11 @@ exports.playCmd = rl => {
                     if (!quiz){
                         reject (new Error(`No existe un quiz asociado al id=${id}.`));
                     }
-                    return makeQuestion(rl, `${quiz.question}: `)
+                    return makeQuestion(rl, `${quiz.question}?: `)
                     .then(a => {
-                        if(a.toLowerCase() === quiz.answer.toLowerCase()){
+                        if(a.toUpperCase() === quiz.answer.toUpperCase()){
                             log('Su respuesta es: ');
-                            biglog('Correcta','green');
+                            log('correcta','green');
                             log(`Lleva ${++score} aciertos.`); 
                             playOne()
                             .then(() => {
@@ -283,13 +283,13 @@ exports.playCmd = rl => {
                             })
                         } else {
                             log('Su respuesta es:');
-                            biglog('Incorrecta','red');
-                            log(`Fin del examen. Aciertos: `);
-                            biglog(score, 'magenta');
+                            glog('incorrecta','red');
+                            log(`Fin del examen. Aciertos: ${score}.`);
+                            //biglog(score, 'magenta');
                             resolve();
                         }
                     });
-                }); 
+                }) 
             }
         })  
     };
