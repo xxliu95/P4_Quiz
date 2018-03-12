@@ -223,6 +223,7 @@ exports.editCmd = (rl,id) => {
     })
     .catch(error => {
         errorlog(error.message);
+        rl.prompt();
     })
     .then(() => {
         rl.prompt();
