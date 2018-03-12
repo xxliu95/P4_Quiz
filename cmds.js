@@ -282,8 +282,8 @@ exports.playCmd = rl => {
                             })
                         } else {
                             log('Su respuesta es:');
-                            log('incorrecta','red');
-                            log(`Fin del examen. Aciertos: ${score}`);
+                            log(`incorrecta. Aciertos: ${score}`,'red');
+                            log(`Fin del examen. `);
                             resolve();
                         }
                     });
