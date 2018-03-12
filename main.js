@@ -78,6 +78,7 @@ rl.on('line', (line) => {
     default:
     log(`Comando desconocida: '${colorize(cmd,'red')}'`);
     log(`Use ${colorize('help', 'green')} para ver todos los comandos disponibles.`);
+    rl.prompt();
     break;
   }
 }).on('close', () => {

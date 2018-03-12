@@ -222,7 +222,6 @@ exports.editCmd = (rl,id) => {
     })
     .catch(error => {
         errorlog(error.message);
-        rl.prompt();
     })
     .then(() => {
         rl.prompt();
@@ -247,11 +246,11 @@ exports.playCmd = rl => {
         i++;
     })
     .then(() => {
-        playOne()
-        .catch(error => {
-            errorlog(error.message);
-            rl.prompt();
-        })
+        playOne();
+    })
+    .catch(error => {
+        errorlog(error.message);
+        rl.prompt();
     })
 
     const playOne = () =>{
@@ -267,9 +266,6 @@ exports.playCmd = rl => {
                 toBeResolved.splice(num,1); 
                 models.quiz.findById(id)
                 .then(quiz => {
-                    if (!quiz){
-                        reject (new Error(`No existe un quiz asociado al id=${id}.`));
-                    }
                     return makeQuestion(rl, `${quiz.question}?: `)
                     .then(a => {
                         if(a.toUpperCase() === quiz.answer.toUpperCase()){
