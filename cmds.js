@@ -273,7 +273,6 @@ exports.playCmd = rl => {
                     return makeQuestion(rl, `${quiz.question}?: `)
                     .then(a => {
                         if(a.toUpperCase() === quiz.answer.toUpperCase()){
-                            log('Su respuesta es: ');
                             log('correcta','green');
                             log(`Lleva ${++score} aciertos.`); 
                             playOne()
@@ -281,7 +280,6 @@ exports.playCmd = rl => {
                                 resolve();
                             })
                         } else {
-                            log('Su respuesta es:');
                             log(`incorrecta. Aciertos: ${score}`,'red');
                             log(`Fin del examen. Aciertos: ${score} `);
                             resolve();
