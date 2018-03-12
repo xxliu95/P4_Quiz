@@ -242,7 +242,7 @@ exports.playCmd = rl => {
 
     models.quiz.findAll()
     .each(quiz => {
-        toBeResolved[i] = i;
+        toBeResolved[i] = quiz.id;
         i++;
     })
     .then(() => {
@@ -251,6 +251,7 @@ exports.playCmd = rl => {
             errorlog(error.message);
         })
         .then(() => {
+            log(`Fin del examen. Aciertos: ${score}`);
             rl.prompt();
         })
     })
@@ -259,12 +260,11 @@ exports.playCmd = rl => {
         return new Sequelize.Promise((resolve, reject) => {
             if(toBeResolved.length === 0){
                 log('No hay nada más que preguntar');
-                log(`Fin del examen. Aciertos: ${score}`);
                 biglog(score, 'magenta');
                 resolve();
             } else {
                 let num = Math.floor((Math.random() * toBeResolved.length));
-                let id = toBeResolved[num] + 1;
+                let id = toBeResolved[num];
                 toBeResolved.splice(num,1); 
                 models.quiz.findById(id)
                 .then(quiz => {
@@ -283,8 +283,7 @@ exports.playCmd = rl => {
                             })
                         } else {
                             log('Su respuesta es:');
-                            glog('incorrecta','red');
-                            log(`Fin del examen. Aciertos: ${score}.`);
+                            log('incorrecta','red');
                             //biglog(score, 'magenta');
                             resolve();
                         }
