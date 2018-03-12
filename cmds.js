@@ -211,14 +211,14 @@ exports.editCmd = (rl,id) => {
         }
         return makeQuestion(rl, `${quiz.question}: ` )
         .then(a => {
-            if(a.trim().toUpperCase() === quiz.answer.toUpperCase()){
+            if(a.toLowerCase() === quiz.answer.toLowerCase()){
                 log('Su respuesta es: ');
                 biglog('Correcta','green');
             } else {
                 log('Su respuesta es:');
                 biglog('Incorrecta','red');
             }
-        })
+        });
     })
     .catch(error => {
         errorlog(error.message);
@@ -273,7 +273,7 @@ exports.playCmd = rl => {
                     }
                     return makeQuestion(rl, `${quiz.question}: `)
                     .then(a => {
-                        if(a.trim().toUpperCase() === quiz.answer.toUpperCase()){
+                        if(a.toLowerCase() === quiz.answer.toLowerCase()){
                             log('Su respuesta es: ');
                             biglog('Correcta','green');
                             log(`Lleva ${++score} aciertos.`); 
@@ -288,7 +288,7 @@ exports.playCmd = rl => {
                             biglog(score, 'magenta');
                             resolve();
                         }
-                    })
+                    });
                 }); 
             }
         })  
