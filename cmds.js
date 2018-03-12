@@ -251,7 +251,6 @@ exports.playCmd = rl => {
             errorlog(error.message);
         })
         .then(() => {
-            log(`Fin del examen. Aciertos: ${score}`);
             rl.prompt();
         })
     })
@@ -260,7 +259,7 @@ exports.playCmd = rl => {
         return new Sequelize.Promise((resolve, reject) => {
             if(toBeResolved.length === 0){
                 log('No hay nada más que preguntar');
-                biglog(score, 'magenta');
+                log(`Fin del examen. Aciertos: ${score}`);
                 resolve();
             } else {
                 let num = Math.floor((Math.random() * toBeResolved.length));
@@ -284,7 +283,7 @@ exports.playCmd = rl => {
                         } else {
                             log('Su respuesta es:');
                             log('incorrecta','red');
-                            //biglog(score, 'magenta');
+                            log(`Fin del examen. Aciertos: ${score}`);
                             resolve();
                         }
                     });
