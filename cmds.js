@@ -280,8 +280,7 @@ exports.playCmd = rl => {
                                 resolve();
                             })
                         } else {
-                            log(`incorrecta. Aciertos: ${score}`,'red');
-                            log(`Fin del examen. Aciertos: ${score} `);
+                            log(`incorrecta. Fin del examen. Aciertos: ${score} `);
                             resolve();
                         }
                     });
