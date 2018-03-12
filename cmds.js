@@ -208,22 +208,20 @@ exports.editCmd = (rl,id) => {
     .then(quiz => {
         if (!quiz){
             throw new Error(`No existe un quiz asociado al id=${id}.`);
-        } else {
-            return makeQuestion(rl, `${quiz.question}?: ` )
-            .then(a => {
-                if(a.toUpperCase() === quiz.answer.toUpperCase()){
-                    log('Su respuesta es correcta: ');
-                    log('correcta','green');
-                } else {
-                    log('Su respuesta es incorrecta:');
-                    log('incorrecta','red');
-                }
-            });
         }
+        return makeQuestion(rl, `${quiz.question}?: ` )
+        .then(a => {
+            if(a.toUpperCase() === quiz.answer.toUpperCase()){
+                log('Su respuesta es correcta: ');
+                log('correcta','green');
+            } else {
+                log('Su respuesta es incorrecta:');
+                log('incorrecta','red');
+            }
+        });
     })
     .catch(error => {
         errorlog(error.message);
-        rl.prompt();
     })
     .then(() => {
         rl.prompt();
@@ -252,9 +250,6 @@ exports.playCmd = rl => {
         .catch(error => {
             errorlog(error.message);
         })
-        .then(() => {
-            rl.prompt();
-        })
     })
 
     const playOne = () =>{
@@ -262,6 +257,7 @@ exports.playCmd = rl => {
             if(toBeResolved.length === 0){
                 log('No hay nada más que preguntar');
                 log(`Fin del examen. Aciertos: ${score}`);
+                rl.prompt();
                 resolve();
             } else {
                 let num = Math.floor((Math.random() * toBeResolved.length));
@@ -277,12 +273,11 @@ exports.playCmd = rl => {
                         if(a.toUpperCase() === quiz.answer.toUpperCase()){
                             log('correcta','green');
                             log(`Lleva ${++score} aciertos.`); 
-                            playOne()
-                            .then(() => {
-                                resolve();
-                            })
+                            playOne();
+                            resolve();
                         } else {
                             log(`incorrecta. Fin del examen. Aciertos: ${score} `);
+                            rl.prompt();
                             resolve();
                         }
                     });
