@@ -283,7 +283,7 @@ exports.playCmd = rl => {
                         } else {
                             log('Su respuesta es:');
                             log(`incorrecta. Aciertos: ${score}`,'red');
-                            log(`Fin del examen. `);
+                            log(`Fin del examen. Aciertos: ${score} `);
                             resolve();
                         }
                     });
