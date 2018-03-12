@@ -208,17 +208,18 @@ exports.editCmd = (rl,id) => {
     .then(quiz => {
         if (!quiz){
             throw new Error(`No existe un quiz asociado al id=${id}.`);
+        } else {
+            return makeQuestion(rl, `${quiz.question}?: ` )
+            .then(a => {
+                if(a.toUpperCase() === quiz.answer.toUpperCase()){
+                    log('Su respuesta es correcta: ');
+                    log('correcta','green');
+                } else {
+                    log('Su respuesta es incorrecta:');
+                    log('incorrecta','red');
+                }
+            });
         }
-        return makeQuestion(rl, `${quiz.question}?: ` )
-        .then(a => {
-            if(a.toUpperCase() === quiz.answer.toUpperCase()){
-                log('Su respuesta es correcta: ');
-                log('correcta','green');
-            } else {
-                log('Su respuesta es incorrecta:');
-                log('incorrecta','red');
-            }
-        });
     })
     .catch(error => {
         errorlog(error.message);
